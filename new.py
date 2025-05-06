@@ -8,11 +8,14 @@ from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 import re
 from langchain_community.tools.tavily_search import TavilySearchResults
+from dotenv import load_dotenv
 
-tavily_api="###"
-os.environ["TAVILY_API_KEY"] = tavily_api
+load_dotenv()
+tavily_api=os.environ['tavily_api']
+API = os.environ['GROQ_API']
+# os.environ["TAVILY_API_KEY"] = tavily_api
 
-client = Groq(api_key="##")
+client = Groq(api_key=API)
 
 
 def clean_resp(sl):
