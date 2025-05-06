@@ -9,29 +9,38 @@ from langchain_community.utilities import WikipediaAPIWrapper
 import re
 from langchain_community.tools.tavily_search import TavilySearchResults
 from dotenv import load_dotenv
-
+import json
 load_dotenv()
 tavily_api=os.environ['tavily_api']
 API = os.environ['GROQ_API']
-# os.environ["TAVILY_API_KEY"] = tavily_api
+os.environ["TAVILY_API_KEY"] = tavily_api
 
 client = Groq(api_key=API)
 
 
-def clean_resp(sl):
-    sl = sl.replace("\n", "").replace("  ", "")
-    sl = sl.replace(',"', ', "')
-    sl = sl.replace('": "', '** - ')
-    sl = sl.replace(', "', '\n**')
-    sl = sl.replace('{"', '**')
-    sl = sl.replace('"', '')
-    sl = sl.replace('[', '')
-    sl = sl.replace(']', '')
-    sl = sl.replace('}', '')
-    sl = sl.replace(': ', '** - ')
-
-
-    return sl
+def clean_resp(data):
+    # sl = sl.replace("\n", "").replace("  ", "")
+    # sl = sl.replace(',"', ', "')
+    # sl = sl.replace('": "', '** - ')
+    # sl = sl.replace(', "', '\n**')
+    # sl = sl.replace('{"', '**')
+    # sl = sl.replace('"', '')
+    # sl = sl.replace('[', '')
+    # sl = sl.replace(']', '')
+    # sl = sl.replace('}', '')
+    # sl = sl.replace(': ', '** - ')
+    markdown = ""
+    
+    # Loop through the dictionary and format each key-value pair
+    for key, value in data.items():
+        if isinstance(value, list):  # If the value is a list (e.g., 'features')
+            markdown += f"**{key.capitalize()}**:\n "
+            for item in value:
+                markdown += f"- {item}\n "
+        else:  # If it's a single value
+            markdown += f"**{key.capitalize()}**: {value}\n "
+    
+    return markdown
 
 
 
@@ -76,7 +85,7 @@ elif choice == "🤖 App":
     st.title("🤖 Shoppee Assistant")
     st.markdown("---")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.header("📂 Upload Image")
@@ -85,8 +94,8 @@ elif choice == "🤖 App":
         if uploaded_file is not None:
             st.success("🛒 Image Uploaded Successfully!")
             # Display file name and size
-            st.markdown(f"**Filename:** {uploaded_file.name}")
-            st.markdown(f"**File Size:** {uploaded_file.size} bytes")
+            # st.markdown(f"**Filename:** {uploaded_file.name}")
+            # st.markdown(f"**File Size:** {uploaded_file.size} bytes")
             
             
             st.markdown("### 📖 Image Preview")
@@ -103,7 +112,7 @@ elif choice == "🤖 App":
 
     # Column 2: Create Embeddings
     with col2:
-        st.header("🧠 Wiki Info")
+        # st.header("🧠 Wiki Info")
         detection = st.checkbox("✅ Detect the Image")
         wiki = st.checkbox("✅ Get Information from Wiki")
         shopp = st.checkbox("✅ Get Shopping Links")
@@ -155,7 +164,7 @@ Return the result in JSON format. No description or any other content
                             }
                         ]
                         completion = client.chat.completions.create(
-                            model="llama-3.2-90b-vision-preview",
+                            model="meta-llama/llama-4-scout-17b-16e-instruct",
                             messages=prompt_template_vision,
                             temperature=1,
                             max_tokens=1024,
@@ -172,10 +181,19 @@ Return the result in JSON format. No description or any other content
                     
                             st.session_state.product = product
                             print("prod=", product)
+                            try:
+                                resp = json.loads(response)
+                                st.write('### Detection:')
+
+                                st.success(clean_resp(resp))
+                            except:
+                                st.write('### Detection:')
+                                st.success(response)
+
+                                
+                                
                             # st.write(st.session_state.product)
-                            st.write('### Detection:')
-                            # st.success(response)
-                            st.success(clean_resp(response))
+
                         except:
                             st.error(f"1111An error occurred\n Please Refresh the Page and try again")   
 
@@ -211,15 +229,7 @@ Return the result in JSON format. No description or any other content
                         st.write(i+1 ,res[i]['content'])
                         st.write(res[i]['url'])
 
-    with col3:
-        st.header("💬 Chatbot")
-        
-        if st.session_state['temp_pdf_path'] is None:
-            st.info("🤖 Please upload an Image and Run detection on it")
-        else:   
-            # Display existing messages
-            # tool = TavilySearchResults(max_results=10)
-            st.write("To be done")
+
             
 
 # Contact Page
