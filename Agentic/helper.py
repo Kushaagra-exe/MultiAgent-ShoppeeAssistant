@@ -8,7 +8,7 @@ from prompts import ROUTER_PROMPT
 from states import RouterResponse
 
 load_dotenv()
-API = "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"
+API = os.environ['GROQ_API']
 
 def get_llm():
     llm = ChatGroq(api_key=API, model="gemma2-9b-it")
