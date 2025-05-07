@@ -20,6 +20,52 @@ Return the result in JSON format. No description or any other content
 Dont write anything else. no suggestions
 """
 
+# prompt_description = """
+# You are a helpful assistant that explains products to people who have no prior knowledge about them.
+
+# Your task is to analyze an image of a product and provide a detailed, easy-to-understand explanation of what it is, how it works, what it’s used for, and why someone might need or use it. Break down any visual branding, design features, or common use cases clearly.
+
+# Respond in the following JSON format only:
+
+# ### JSON Output Format:
+# {
+#   "product_name": "",
+#   "category": "",
+#   "detailed_explanation": "",
+#   "common_uses": [],
+#   "who_might_use_this": [],
+#   "related_products_or_alternatives": []
+# }
+
+# ### Example 1:
+# Image: A black wireless headphone with a Sony logo and cushioned ear cups.
+# Output:
+# {
+#   "product_name": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
+#   "category": "Electronics - Audio",
+#   "detailed_explanation": "These are over-ear wireless headphones made by Sony, designed to provide high-quality audio without the need for cords. They include noise-cancelling technology to block out background sounds, making them ideal for focus or travel. The cushioned ear cups and adjustable headband offer comfort for long listening sessions.",
+#   "common_uses": ["Listening to music", "Taking calls", "Watching movies", "Blocking noise while traveling"],
+#   "who_might_use_this": ["Commuters", "Office workers", "Students", "Music enthusiasts"],
+#   "related_products_or_alternatives": ["Bose QuietComfort 45", "Apple AirPods Max", "Sennheiser Momentum 4"]
+# }
+
+# ### Example 2:
+# Image: A purple yoga mat with a textured surface and rolled edge.
+# Output:
+# {
+#   "product_name": "Manduka PRO Yoga Mat",
+#   "category": "Fitness - Yoga Equipment",
+#   "detailed_explanation": "This is a yoga mat designed to provide a non-slip, cushioned surface for practicing yoga or stretching exercises. It is textured for grip and made of durable material to support regular use. The mat can be rolled up and carried easily, making it portable for home, gym, or studio use.",
+#   "common_uses": ["Yoga", "Pilates", "Stretching", "Bodyweight exercises"],
+#   "who_might_use_this": ["Yoga practitioners", "Fitness enthusiasts", "People doing home workouts"],
+#   "related_products_or_alternatives": ["Liforme Yoga Mat", "Gaiam Essentials Mat", "Lululemon Reversible Mat"]
+# }
+
+# Select the parameters of this JSON result according to the image and there is no need to always use the given parameters
+# Return the result in JSON format. No description or any other content
+# Dont write anything else. no suggestions
+# """
+
 prompt_description = """
 You are a helpful assistant that explains products to people who have no prior knowledge about them.
 
@@ -38,35 +84,18 @@ Respond in the following JSON format only:
 }
 
 ### Example 1:
-Image: A black wireless headphone with a Sony logo and cushioned ear cups.
-Output:
-{
-  "product_name": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
-  "category": "Electronics - Audio",
-  "detailed_explanation": "These are over-ear wireless headphones made by Sony, designed to provide high-quality audio without the need for cords. They include noise-cancelling technology to block out background sounds, making them ideal for focus or travel. The cushioned ear cups and adjustable headband offer comfort for long listening sessions.",
-  "common_uses": ["Listening to music", "Taking calls", "Watching movies", "Blocking noise while traveling"],
-  "who_might_use_this": ["Commuters", "Office workers", "Students", "Music enthusiasts"],
-  "related_products_or_alternatives": ["Bose QuietComfort 45", "Apple AirPods Max", "Sennheiser Momentum 4"]
-}
+# Image: A black wireless headphone with a Sony logo and cushioned ear cups.
+# Output:
+# {
+#   "product_name": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
+#   "category": "Electronics - Audio",
+#   "detailed_explanation": "DETAILED EXPLANATION",
+#   "common_uses": ["Listening to music", "Taking calls", "Watching movies", "Blocking noise while traveling"],
+#   "who_might_use_this": ["Commuters", "Office workers", "Students", "Music enthusiasts"],
+#   "related_products_or_alternatives": ["Bose QuietComfort 45", "Apple AirPods Max", "Sennheiser Momentum 4"]
+# }
 
-### Example 2:
-Image: A purple yoga mat with a textured surface and rolled edge.
-Output:
-{
-  "product_name": "Manduka PRO Yoga Mat",
-  "category": "Fitness - Yoga Equipment",
-  "detailed_explanation": "This is a yoga mat designed to provide a non-slip, cushioned surface for practicing yoga or stretching exercises. It is textured for grip and made of durable material to support regular use. The mat can be rolled up and carried easily, making it portable for home, gym, or studio use.",
-  "common_uses": ["Yoga", "Pilates", "Stretching", "Bodyweight exercises"],
-  "who_might_use_this": ["Yoga practitioners", "Fitness enthusiasts", "People doing home workouts"],
-  "related_products_or_alternatives": ["Liforme Yoga Mat", "Gaiam Essentials Mat", "Lululemon Reversible Mat"]
-}
-
-Select the parameters of this JSON result according to the image and there is no need to always use the given parameters
-Return the result in JSON format. No description or any other content
-Dont write anything else. no suggestions
 """
-
-
 
 ROUTER_PROMPT = """ 
 You are an AI converstaional assistant and you are responsible to make descisions on What tool do we need to use to provide the user with the necessary information he needs.

@@ -21,14 +21,14 @@ class Wiki_routing(BaseModel):
 
 class State(BaseModel):
     """Simple state object."""
-    msg : List[str]
-    input_type: Literal["image", "text"]
-    content : str
-    image_bytes : bytes
-    product_info : VlmResponse
-    workflow : RouterResponse
-    wiki_response : str
-    wiki_data : str
     session_id : str
-    links : List[Dict]
-    routing : Wiki_routing
+    msg : List[str]
+    input_type: Optional[Literal["image", "text"]] 
+    content : Optional[str] = None
+    image_bytes : Optional[str] = None
+    product_info : Optional[VlmResponse] = None
+    workflow : Optional[RouterResponse] = None
+    wiki_response : Optional[str] = None
+    wiki_data : Optional[str] = None
+    links : Optional[List[Dict]] = None
+    routing : Optional[Wiki_routing] = None

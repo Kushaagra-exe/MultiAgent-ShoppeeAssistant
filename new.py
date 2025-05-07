@@ -14,6 +14,8 @@ load_dotenv()
 tavily_api=os.environ['tavily_api']
 API = os.environ['GROQ_API']
 os.environ["TAVILY_API_KEY"] = tavily_api
+from io import BytesIO
+from PIL import Image
 
 client = Groq(api_key=API)
 
@@ -126,8 +128,18 @@ elif choice == "🤖 App":
                 try:
                     
                     with st.spinner("🔄 Processing..."):
-                        image_data = uploaded_file.read()
-                        image_data_url = f"data:image/jpeg;base64,{base64.b64encode(image_data).decode()}"
+                        # method 1
+                        # image_data = uploaded_file.read()
+                        # image_data_url = f"data:image/jpeg;base64,{base64.b64encode(image_data).decode()}"
+
+                        # method 2
+
+                        image = Image.open(uploaded_file)
+                        format = image.format
+
+                        buffered = BytesIO()
+                        image.save(buffered, format=format)
+                        image_data_url = f"data:image/jpeg;base64,{base64.b64encode(buffered.getvalue()).decode()}"
                         prompt_template_vision = [
                             {
                                 "role": "user",
@@ -163,6 +175,7 @@ Return the result in JSON format. No description or any other content
                                 ]
                             }
                         ]
+                        print(prompt_template_vision)
                         completion = client.chat.completions.create(
                             model="meta-llama/llama-4-scout-17b-16e-instruct",
                             messages=prompt_template_vision,
