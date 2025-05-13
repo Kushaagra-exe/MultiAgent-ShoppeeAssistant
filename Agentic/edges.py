@@ -11,6 +11,9 @@ def input_decide_edge(state: State) -> Literal["vision_node", "injection_node"]:
         
         
 def workflow_edge(state: State) -> Literal["context_node", "scraping_node_tav", "chatbot_node"]:
+        if state.product_info == None:
+             return "chatbot_node"
+
         if state.workflow== "Wiki_tool":
             return "context_node"
         elif state.workflow == "links_tool":
