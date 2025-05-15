@@ -1,4 +1,4 @@
-# 🛍️ Kushaagra-Exe-MultiAgent-ShoppeeAssistant
+# 🛍️ Multi Agent Ai Shopping Assistant
 
 An AI-powered shopping assistant application that helps users recognize products from images, ask questions about those products, retrieve purchase links, and fetch relevant information from Wikipedia. The app is available in two modes: a manual app interface and a fully automated multi-agentic chatbot system.
 
