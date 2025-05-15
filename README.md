@@ -40,7 +40,7 @@ An AI-powered shopping assistant application that helps users recognize products
 ![Architechture](Media%2FAgentic.png)
 
 ## Process Flow
-![Process Flow](Media%2Fprocess.png)
+![Process Flow](Media%2Fprocess.jpg)
 
 ## 🛠️ Installation & Setup
 
