@@ -112,6 +112,7 @@ IMPORTANT RULES FOR Wiki_tool calling:
 4. DO NOT create use the tool for general questions and descriptions.
 5. DO NOT use the tool for general messages and descriptions.
 6. There should be an intent of the user to know information about the product or ask any question regarding it. 
+7. If there is a direct request from to find information from wikipedia. 
 
 IMPORTANT RULES FOR links_tool calling:
 1. Only use this tool if there is an explicit request by the user for suggestion of pproducts.
@@ -144,6 +145,8 @@ The answer is not directly present in the provided information. You are expected
 - Carefully read the context and try to guess the answer
 - Use logical deduction, common sense, and your general knowledge
 - If uncertain, make a best-guess based on available clues
+
+If the user query is to get information from Wikipedia Give back the context as it is do not summarise it.
 
 Do not say "I don't know" or "It's not mentioned." Instead, provide a thoughtful, inferred answer.
 '''

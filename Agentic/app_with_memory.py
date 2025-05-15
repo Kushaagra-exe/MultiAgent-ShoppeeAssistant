@@ -193,6 +193,7 @@ class Shoppingass:
 
         res = wiki_tool.invoke(query)
         print("WikiNODE - :", res)
+        res = "**Wikipedia Information**: " + res
         state.wiki_data = res
         wr = Wiki_routing(is_context_enough=state.routing.is_context_enough, is_wiki_enough='NOT FOUND')
         state.routing = wr

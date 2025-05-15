@@ -22,10 +22,10 @@ def xyz_function(input_data, input_type="text"):
     if input_type=='image':
         # print("img bytes1:",input_data[:30])
 
-        s = State(session_id="user1234",msg=[],input_type=input_type, image_bytes= input_data)
+        s = State(session_id="user12345",msg=[],input_type=input_type, image_bytes= input_data)
     
     else:
-        s = State(session_id="user1234",msg=[input_data],input_type=input_type)
+        s = State(session_id="user12345",msg=[input_data],input_type=input_type)
         
     g = Shoppingass()
     result=g.graph.invoke(s)
@@ -43,9 +43,9 @@ def xyz_function(input_data, input_type="text"):
     s=""
     if isinstance(result, list):
         for item in result:
-            s += f"\nTitle: {item['title']}\nUrl: {item['url']}\nContent: {item['content']}\n---"
+            s += f"Title: {item['title']} Url: {item['url']}Content: {item['content']}"
         result = s
-
+        print(result)
     print(result)
     # except Exception as e:
     #     print(f"---------------- {e}")

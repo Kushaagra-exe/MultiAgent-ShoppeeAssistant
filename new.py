@@ -63,7 +63,7 @@ def xyz_function(input_data, input_type="text"):
     s=""
     if isinstance(result, list):
         for item in result:
-            s += f"\nTitle: {item['title']}\nUrl: {item['url']}\nContent: {item['content']}\n---"
+            s += f"\n**Title:** {item['title']} \n **Url:** {item['url']} \n **Content:** {item['content']}\n"
         result = s
 
     print(result)
@@ -449,12 +449,13 @@ elif choice == "📧 Contact":
     st.title("📬 Information")
     st.markdown("""
     ## For More Info, Reach us at 
-                Kushaagra Mehta -  RA2111026030065 (UI & Gen Ai)
-        Aarav Sharma -  RA2111026030078 (Gen Ai)
-        Ena Tandon -  RA2111026030109 (Model Fine Tuning)
-        Lakksh Bhardwaj -  RA2111026030079 (Prompt Engineering)
     """)
+    st.markdown("## Kushaagra Mehta")
+    st.markdown("Linkedin - [LinkedIn](https://www.linkedin.com/in/kushaagra-mehta/)")
+    st.markdown("Github - [GitHub](https://github.com/Kushaagra-exe)")
+    st.markdown("Twitter - [Twitter](https://x.com/Kushaagra_exe)")
+    
 
 # Footer
 st.markdown("---")
-st.markdown("Developed By: Kushaagra Mehta | Aarav Sharma | Ena Tandon | Lakksh Bhardwaj")
+# st.markdown("Developed By: Kushaagra Mehta | Aarav Sharma | Ena Tandon | Lakksh Bhardwaj")
