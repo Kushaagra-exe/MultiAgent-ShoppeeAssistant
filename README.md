@@ -19,6 +19,11 @@ An AI-powered shopping assistant application that helps users recognize products
 ### 4. 🌐 Wikipedia Info Retrieval
 - Fetches general and encyclopedic knowledge about the product from Wikipedia
 - Helpful for background or historical information
+## 🧠 Technologies and Frameworks Used
+   - Langgraph
+   - Langchain
+   - Generative Ai
+   - LLMs
 
 ## 🤖 Components
 
